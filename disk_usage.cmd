@@ -1,0 +1,1 @@
+start  /b  pythonw  "D:\files\using\Python\P_My_Tree_Size_Free\disk_usage.py"
