@@ -207,10 +207,9 @@ class DiskUsageApp:
         self.tree.bind("<Double-1>", self._on_double_click)
 
         # 像资源管理器一样用键盘导航
-        #   ↑/↓ 选择条目(Treeview 自带);Enter 进入目录;Alt+↑ 回上一级;退格也回上一级
+        #   ↑/↓ 选择条目(Treeview 自带);Enter 进入目录;Alt+↑ 回上一级
         self.tree.bind("<Return>", self._on_enter)
         self.root.bind("<Alt-Up>", lambda e: (self._go_up(), "break")[1])
-        self.root.bind("<BackSpace>", self._on_backspace)
 
         # 键盘快捷键:Ctrl+加号放大,Ctrl+减号缩小
         self.root.bind("<Control-plus>", lambda e: self._change_font(2))
@@ -263,11 +262,6 @@ class DiskUsageApp:
         info = self.item_data.get(iid)
         if info and info["is_dir"]:
             self.scan(info["path"])
-        return "break"
-
-    def _on_backspace(self, _event):
-        """退格:回到上一级(与资源管理器一致)。"""
-        self._go_up()
         return "break"
 
     def _cancel_scan(self):
