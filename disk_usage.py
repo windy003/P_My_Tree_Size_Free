@@ -83,7 +83,15 @@ class DiskUsageApp:
     def __init__(self, root):
         self.root = root
         self.root.title("磁盘空间分析器")
-        self.root.geometry("900x600")
+        self.root.geometry("900x600")  # 还原(非最大化)时的窗口尺寸
+        # 打开时默认最大化
+        try:
+            self.root.state("zoomed")          # Windows
+        except tk.TclError:
+            try:
+                self.root.attributes("-zoomed", True)  # Linux 等
+            except tk.TclError:
+                pass
 
         self.current_path = None
         self.scan_generation = 0          # 用于丢弃过期的扫描结果
